@@ -1,0 +1,1329 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juan David Martínez - Entrenador Personal Bucaramanga</title>
+    <meta name="description" content="Entrenador Personal Certificado en Bucaramanga. Más de 3 años transformando vidas. Planes personalizados, semipersonalizados y online desde $260.000.">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* Variables CSS */
+        :root {
+            --color-primary: #00FF7F;
+            --color-secondary: #32CD32;
+            --color-accent: #ADFF2F;
+            --color-background: #0A0A0F;
+            --color-dark: #111111;
+            --color-card: #1A1A1A;
+            --color-text: #FFFFFF;
+            --color-text-light: #B0B0B0;
+            --color-gray: #333333;
+
+            --font-heading: 'Montserrat', sans-serif;
+            --font-body: 'Open Sans', sans-serif;
+
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 2rem;
+            --spacing-lg: 4rem;
+            --spacing-xl: 6rem;
+
+            --border-radius: 0.75rem;
+            --box-shadow: 0 8px 32px rgba(0, 255, 127, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        /* Reset y base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--color-text);
+            background-color: var(--color-background);
+            overflow-x: hidden;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Header y navegación */
+        .header {
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 4px 30px rgba(0, 255, 127, 0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: var(--spacing-sm) 0;
+            border-bottom: 1px solid rgba(0, 255, 127, 0.2);
+        }
+
+        .nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-sm);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav__logo {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--color-primary);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav__toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--color-primary);
+            cursor: pointer;
+        }
+
+        .nav__menu {
+            display: flex;
+            list-style: none;
+            gap: var(--spacing-md);
+        }
+
+        .nav__link {
+            color: var(--color-text);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav__link:hover {
+            color: var(--color-primary);
+        }
+
+        .nav__link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--color-primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav__link:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(10, 10, 15, 0.85), rgba(0, 255, 127, 0.2));
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            color: var(--color-text);
+            text-align: center;
+            padding: var(--spacing-xl) var(--spacing-sm);
+            margin-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero__image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .hero__image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            opacity: 0.6;
+            filter: brightness(0.8) contrast(1.1);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at center, rgba(0, 255, 127, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero__content {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 3;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            padding: 0 var(--spacing-md);
+        }
+
+        .hero__left {
+            position: absolute;
+            left: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 4;
+            max-width: 300px;
+        }
+
+        .hero__center {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 4;
+        }
+
+        .hero__subtitle {
+            color: var(--color-primary);
+            font-weight: 600;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .hero__title {
+            font-family: var(--font-heading);
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 0.9;
+            color: rgba(255, 255, 255, 0.3);
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.9);
+            margin-bottom: var(--spacing-sm);
+            letter-spacing: 2px;
+        }
+
+        .hero__role {
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: var(--spacing-lg);
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+        }
+
+        .hero__description {
+            font-size: 1.1rem;
+            margin-bottom: var(--spacing-lg);
+            opacity: 0.95;
+            line-height: 1.6;
+            text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.8);
+        }
+
+        .hero__stats {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-lg);
+            flex-wrap: wrap;
+        }
+
+        .hero__stat {
+            text-align: center;
+        }
+
+        .hero__stat-number {
+            display: block;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--color-primary);
+            font-family: var(--font-heading);
+        }
+
+        .hero__stat-text {
+            font-size: 0.875rem;
+            opacity: 0.8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: var(--spacing-sm) var(--spacing-lg);
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+            text-align: center;
+            min-width: 200px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn--primary {
+            background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
+            color: var(--color-dark);
+            box-shadow: 0 4px 20px rgba(0, 255, 127, 0.3);
+        }
+
+        .btn--primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0, 255, 127, 0.4);
+        }
+
+        .btn--secondary {
+            background: transparent;
+            color: var(--color-primary);
+            border: 2px solid var(--color-primary);
+        }
+
+        .btn--secondary:hover {
+            background: var(--color-primary);
+            color: var(--color-dark);
+            transform: translateY(-3px);
+        }
+
+        /* Secciones generales */
+        .section {
+            padding: var(--spacing-xl) var(--spacing-sm);
+            position: relative;
+        }
+
+        .section--dark {
+            background: var(--color-dark);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section__title {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--color-text);
+            text-align: center;
+            margin-bottom: var(--spacing-sm);
+            position: relative;
+        }
+
+        .section__title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
+            border-radius: 2px;
+        }
+
+        .section__subtitle {
+            font-size: 1.125rem;
+            color: var(--color-text-light);
+            text-align: center;
+            margin-bottom: var(--spacing-lg);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* About Section */
+        .about {
+            background: var(--color-dark);
+        }
+
+        .about__content {
+            display: grid;
+            gap: var(--spacing-lg);
+            align-items: center;
+        }
+
+        .about__image {
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 255, 127, 0.2);
+            border: 2px solid rgba(0, 255, 127, 0.3);
+        }
+
+        .about__image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .about__image:hover img {
+            transform: scale(1.05);
+        }
+
+        .about__text {
+            max-width: none;
+        }
+
+        .about__description {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            margin-bottom: var(--spacing-md);
+            color: var(--color-text-light);
+        }
+
+        .about__credentials {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-sm);
+            margin-top: var(--spacing-md);
+        }
+
+        .credential {
+            background: rgba(0, 255, 127, 0.1);
+            color: var(--color-primary);
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            border: 1px solid rgba(0, 255, 127, 0.3);
+        }
+
+        /* Plans Section */
+        .plans {
+            display: grid;
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-lg);
+        }
+
+        .plan {
+            background: var(--color-card);
+            border-radius: var(--border-radius);
+            padding: var(--spacing-lg);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(0, 255, 127, 0.2);
+        }
+
+        .plan::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-secondary), var(--color-accent));
+        }
+
+        .plan:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--box-shadow);
+            border-color: var(--color-primary);
+        }
+
+        .plan__name {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-xs);
+            color: var(--color-primary);
+            text-transform: uppercase;
+        }
+
+        .plan__tagline {
+            color: var(--color-text-light);
+            font-style: italic;
+            margin-bottom: var(--spacing-sm);
+            font-size: 0.95rem;
+        }
+
+        .plan__price {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--color-text);
+            margin-bottom: var(--spacing-sm);
+            font-family: var(--font-heading);
+        }
+
+        .plan__price-period {
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--color-text-light);
+        }
+
+        .plan__description {
+            color: var(--color-text-light);
+            margin-bottom: var(--spacing-md);
+            line-height: 1.6;
+        }
+
+        .plan__features {
+            list-style: none;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .plan__feature {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: var(--spacing-xs);
+            padding: var(--spacing-xs) 0;
+        }
+
+        .plan__feature-icon {
+            color: var(--color-primary);
+            margin-right: var(--spacing-sm);
+            margin-top: 2px;
+            flex-shrink: 0;
+            font-size: 0.875rem;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background: var(--color-dark);
+        }
+
+        .testimonials__grid {
+            display: grid;
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-lg);
+        }
+
+        .testimonial {
+            background: var(--color-card);
+            padding: var(--spacing-lg);
+            border-radius: var(--border-radius);
+            border: 1px solid rgba(0, 255, 127, 0.2);
+            transition: var(--transition);
+        }
+
+        .testimonial:hover {
+            border-color: var(--color-primary);
+            transform: translateY(-5px);
+        }
+
+        .testimonial__image {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto var(--spacing-md);
+            border: 3px solid var(--color-primary);
+            box-shadow: 0 4px 15px rgba(0, 255, 127, 0.3);
+        }
+
+        .testimonial__image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .testimonial__text {
+            font-style: italic;
+            margin-bottom: var(--spacing-md);
+            line-height: 1.7;
+            color: var(--color-text-light);
+        }
+
+        .testimonial__author {
+            font-weight: 600;
+            color: var(--color-primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Contact Section */
+        .contact {
+            text-align: center;
+        }
+
+        .contact__info {
+            display: grid;
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-lg);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact__item {
+            background: var(--color-card);
+            padding: var(--spacing-lg);
+            border-radius: var(--border-radius);
+            border: 1px solid rgba(0, 255, 127, 0.2);
+            transition: var(--transition);
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            text-align: center;
+        }
+
+        .contact__item:hover {
+            border-color: var(--color-primary);
+            transform: translateY(-5px);
+        }
+
+        .contact__item--clickeable {
+            position: relative;
+        }
+
+        .contact__item--clickeable:hover {
+            border-color: var(--color-primary);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 255, 127, 0.3);
+            cursor: pointer;
+        }
+
+        .contact__item--clickeable::after {
+            content: '↗';
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            color: var(--color-primary);
+            font-size: 1.2rem;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .contact__item--clickeable:hover::after {
+            opacity: 1;
+        }
+
+        .contact__icon {
+            font-size: 2rem;
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .contact__label {
+            font-weight: 600;
+            color: var(--color-text);
+            margin-bottom: var(--spacing-xs);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .contact__value {
+            color: var(--color-text-light);
+            font-size: 1.125rem;
+        }
+
+        /* WhatsApp flotante */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 999;
+        }
+
+        .whatsapp-float__btn {
+            background: linear-gradient(45deg, #25D366, #128C7E);
+            color: var(--color-text);
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            text-decoration: none;
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+            transition: var(--transition);
+            animation: pulse 2s infinite;
+        }
+
+        .whatsapp-float__btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 35px rgba(37, 211, 102, 0.6);
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--color-dark);
+            color: var(--color-text);
+            padding: var(--spacing-lg) var(--spacing-sm) var(--spacing-md);
+            text-align: center;
+            border-top: 1px solid rgba(0, 255, 127, 0.2);
+        }
+
+        .footer__content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer__logo {
+            font-family: var(--font-heading);
+            font-size: 1.75rem;
+            font-weight: 800;
+            margin-bottom: var(--spacing-sm);
+            color: var(--color-primary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .footer__description {
+            margin-bottom: var(--spacing-md);
+            opacity: 0.8;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            color: var(--color-text-light);
+        }
+
+        .footer__social {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .footer__social-link {
+            color: var(--color-text-light);
+            font-size: 1.5rem;
+            transition: var(--transition);
+            width: 50px;
+            height: 50px;
+            border: 1px solid rgba(0, 255, 127, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .footer__social-link:hover {
+            color: var(--color-primary);
+            border-color: var(--color-primary);
+            transform: translateY(-3px);
+        }
+
+        .footer__copyright {
+            border-top: 1px solid rgba(0, 255, 127, 0.1);
+            padding-top: var(--spacing-md);
+            opacity: 0.6;
+            font-size: 0.875rem;
+        }
+
+        /* Responsive */
+        @media (min-width: 768px) {
+            .hero__title {
+                font-size: 4rem;
+            }
+
+            .about__content {
+                grid-template-columns: 1fr 1.5fr;
+                gap: var(--spacing-xl);
+                align-items: center;
+            }
+
+            .about__image {
+                order: 2;
+            }
+
+            .about__text {
+                order: 1;
+            }
+
+            .plans {
+                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            }
+
+            .testimonials__grid {
+                grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            }
+
+            .contact__info {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .plans {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 767px) {
+            .nav__toggle {
+                display: block;
+            }
+
+            .nav__menu {
+                position: fixed;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(10, 10, 15, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: var(--spacing-md);
+                transform: translateY(-100%);
+                opacity: 0;
+                visibility: hidden;
+                transition: var(--transition);
+                border-top: 1px solid rgba(0, 255, 127, 0.2);
+            }
+
+            .nav__menu.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .hero__image img {
+                object-position: center 20%;
+                opacity: 0.5;
+            }
+
+            .hero__left {
+                position: relative;
+                left: auto;
+                top: auto;
+                transform: none;
+                text-align: center;
+                max-width: none;
+                margin-bottom: var(--spacing-md);
+            }
+
+            .hero__title {
+                font-size: 2.5rem;
+            }
+
+            .hero__content {
+                flex-direction: column;
+            }
+
+            .hero__stats {
+                gap: var(--spacing-md);
+            }
+
+            .section__title {
+                font-size: 2rem;
+            }
+
+            .plan {
+                padding: var(--spacing-md);
+            }
+
+            .whatsapp-float {
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .whatsapp-float__btn {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+
+            .about__content {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-md);
+            }
+
+            .about__image {
+                max-width: 300px;
+                margin: 0 auto;
+            }
+
+            .testimonial__image {
+                width: 60px;
+                height: 60px;
+            }
+
+            .testimonial {
+                padding: var(--spacing-md);
+            }
+        }
+
+        /* Animaciones de entrada */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <a href="#inicio" class="nav__logo">Juan David</a>
+            <button class="nav__toggle" id="navToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav__menu" id="navMenu">
+                <li><a href="#inicio" class="nav__link">Inicio</a></li>
+                <li><a href="#sobre-mi" class="nav__link">Sobre Mí</a></li>
+                <li><a href="#planes" class="nav__link">Planes</a></li>
+                <li><a href="#testimonios" class="nav__link">Testimonios</a></li>
+                <li><a href="#contacto" class="nav__link">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero">
+        <div class="hero__image">
+            <img src="https://i.imgur.com/b2T0rgC.png" alt="Juan David Martínez - Entrenador Personal" loading="lazy">
+        </div>
+
+        <div class="hero__content">
+            <div class="hero__left">
+                <p class="hero__subtitle">Entrenador Personal Certificado</p>
+                <h1 class="hero__title">Juan David<br>Martínez</h1>
+                <p class="hero__role">Entrenador Personal</p>
+            </div>
+
+            <div class="hero__center">
+                <p class="hero__description">
+                    Licenciado en Educación Física, apasionado por el movimiento y
+                    el potencial del cuerpo humano. Transformo vidas a través del
+                    acompañamiento cercano y el conocimiento técnico.
+                </p>
+
+                <div class="hero__stats">
+                    <div class="hero__stat">
+                        <span class="hero__stat-number">3+</span>
+                        <span class="hero__stat-text">Años de experiencia</span>
+                    </div>
+                    <div class="hero__stat">
+                        <span class="hero__stat-number">UCC</span>
+                        <span class="hero__stat-text">Licenciado</span>
+                    </div>
+                    <div class="hero__stat">
+                        <span class="hero__stat-number">100%</span>
+                        <span class="hero__stat-text">Personalizado</span>
+                    </div>
+                </div>
+
+                <a href="#contacto" class="btn btn--primary">Comienza tu transformación</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobre Mí -->
+    <section id="sobre-mi" class="section about">
+        <div class="container">
+            <h2 class="section__title fade-in">¿Quién Soy?</h2>
+            <div class="about__content fade-in">
+                <div class="about__image">
+                    <img src="https://i.imgur.com/w0ouSIR.png" alt="Juan David Martínez - Sobre mí" loading="lazy">
+                </div>
+                <div class="about__text">
+                    <p class="about__description">
+                        Soy <strong>@juanda.entrenador_7</strong>, licenciado en Educación Física de la UCC Bucaramanga,
+                        apasionado por el movimiento y el potencial del cuerpo humano. Cuento con más de 3 años de
+                        experiencia guiando a personas en sus procesos deportivos.
+                    </p>
+                    <p class="about__description">
+                        Me especializo en entrenamientos de gimnasio enfocados en objetivos reales y saludables.
+                        Me motiva generar cambios sostenibles a través del acompañamiento cercano, el conocimiento
+                        técnico y la energía que conecta la mente y el cuerpo.
+                    </p>
+                    <div class="about__credentials">
+                        <span class="credential">Licenciado UCC Bucaramanga</span>
+                        <span class="credential">3+ años experiencia</span>
+                        <span class="credential">Especialista en gimnasio</span>
+                        <span class="credential">Objetivos reales</span>
+                        <span class="credential">Cambios sostenibles</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Planes de entrenamiento -->
+    <section id="planes" class="section">
+        <div class="container">
+            <h2 class="section__title fade-in">Mis Planes de Entrenamiento</h2>
+            <p class="section__subtitle fade-in">
+                Diseñados para adaptarse a tu estilo de vida y objetivos específicos
+            </p>
+
+            <div class="plans fade-in">
+                <div class="plan">
+                    <h3 class="plan__name">Plan Semi-Personalizado</h3>
+                    <p class="plan__tagline">Entrena con propósito, no en automático</p>
+                    <div class="plan__price">
+                        $260.000
+                        <span class="plan__price-period"> COP/mes</span>
+                    </div>
+                    <p class="plan__description">
+                        Diseñado para quienes comparten metas comunes pero valoran el acompañamiento
+                        cercano y estructurado. Trabajamos en equipo con un enfoque individualizado.
+                    </p>
+                    <ul class="plan__features">
+                        <li class="plan__feature">
+                            <i class="fas fa-check plan__feature-icon"></i>
+                            <span>Guía nutricional alineada a objetivos</span>
+                        </li>
+                        <li class="plan__feature">
+                            <i class="fas fa-check plan__feature-icon"></i>
+                            <span>Sesiones en grupo reducido</span>
+                        </li>
+                        <li class="plan__feature">
+                            <i class="fas fa-check plan__feature-icon"></i>
+                            <span>Seguimiento constante y personalizado</span>
+                        </li>
+                        <li class="plan__feature">
+                            <i class="fas fa-check plan__feature-icon"></i>
+                            <span>Ambiente de comunidad y apoyo</span>
+                        </li>
+                    </ul>
+                    <a href="https://wa.me/573187618080?text=Hola Juan David, estoy interesado en el Plan Semi-Personalizado. Me gustaría conocer más detalles sobre disponibilidad y cómo podemos empezar mi proceso de transformación." class="btn btn--secondary">Consultar disponibilidad</a>
+                </div>
+
+                <div class="plan">
+                    <h3 class="plan__name">Plan Personalizado</h3>
+                    <p class="plan__tagline">Tu entrenamiento, a tu medida</p>
+                    <div class="plan__price">
+                        $400.000
+                        <span class="plan__price-period"> COP/mes</span>
+                    </div>
+                    <p class="plan__description">
+                        Para quienes buscan un acompañamiento totalmente enfocado en su progreso individual.
+                        Rutinas 100% adaptadas con seguimiento constante y disponibilidad total.
+                    </p>
+                    <ul class="plan__features">
+                        <li class="plan__feature">
+                            <i class="fas fa-check plan__feature-icon"></i>
+                            <span>Guía nutricional completa personalizada</span>
+                        </li>
+                        <li class="plan__feature">
+                            <i class="fas fa-check plan__feature-icon"></i>
+                            <span>Sesiones 1 a 1 completamente personalizadas</span>
+                        </li>
+                        <li class="plan__feature">
+                            <i class="fas fa-check plan__feature-icon"></i>
+                            <span>Evaluación física y bienestar integral</span>
+                        </li>
+                        <li class="plan__feature">
+                            <i class="fas fa-check plan__feature-icon"></i>
+                            <span>Ajustes en tiempo real según progreso</span>
+                        </li>
+                        <li class="plan__feature">
+                            <i class="fas fa-check plan__feature-icon"></i>
+                            <span>Disponibilidad total para resolver dudas</span>
+                        </li>
+                    </ul>
+                    <a href="https://wa.me/573187618080?text=Hola Juan David, estoy interesado en el Plan Personalizado. Me encantaría tener una consulta para conocer cómo este plan se adaptaría perfectamente a mis objetivos específicos." class="btn btn--secondary">Consultar disponibilidad</a>
+                </div>
+
+                <div class="plan">
+                    <h3 class="plan__name">Plan Online Personalizado</h3>
+                    <p class="plan__tagline">Resultados reales, estés donde estés</p>
+                    <div class="plan__price">
+                        $345.000
+                        <span class="plan__price-period"> COP/mes</span>
+                    </div>
+                    <p class="plan__description">
+                        Experiencia de entrenamiento totalmente personalizada sin importar tu ubicación.
+                        Acompañamiento constante por videollamada y WhatsApp para que nunca entrenes solo.
+                    </p>
+                    <ul class="plan__features">
+                        <li class="plan__feature">
+                            <i class="fas fa-check plan__feature-icon"></i>
+                            <span>Guía nutricional alineada a metas</span>
+                        </li>
+                        <li class="plan__feature">
+                            <i class="fas fa-check plan__feature-icon"></i>
+                            <span>Rutinas adaptadas a tus capacidades</span>
+                        </li>
+                        <li class="plan__feature">
+                            <i class="fas fa-check plan__feature-icon"></i>
+                            <span>Seguimiento por videollamada y WhatsApp</span>
+                        </li>
+                        <li class="plan__feature">
+                            <i class="fas fa-check plan__feature-icon"></i>
+                            <span>Recomendaciones de suplementación</span>
+                        </li>
+                        <li class="plan__feature">
+                            <i class="fas fa-check plan__feature-icon"></i>
+                            <span>Proceso seguro y eficaz</span>
+                        </li>
+                    </ul>
+                    <a href="https://wa.me/573187618080?text=Hola Juan David, estoy interesado en el Plan Online Personalizado. Me gustaría saber más sobre la modalidad virtual y cómo puedo comenzar desde cualquier ubicación." class="btn btn--secondary">Consultar disponibilidad</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonios -->
+    <section id="testimonios" class="section testimonials">
+        <div class="container">
+            <h2 class="section__title fade-in">Lo que dicen mis clientes</h2>
+            <p class="section__subtitle fade-in">
+                Testimonios reales de personas que han transformado su vida
+            </p>
+
+            <div class="testimonials__grid fade-in">
+                <div class="testimonial">
+                    <div class="testimonial__image">
+                        <img src="https://i.imgur.com/eCx0Hir.png" alt="Julián García - Cliente" loading="lazy">
+                    </div>
+                    <p class="testimonial__text">
+                        "Hablar de Juan es hablar de vocación, talento y compromiso. En solo tres meses vi resultados reales,
+                        saludables y sostenibles. Más allá del trabajo físico, su guía me ayudó a conectar con mi bienestar
+                        mental y emocional, aprendiendo a verme y tratarme con más amor y respeto."
+                    </p>
+                    <p class="testimonial__author">Julián García</p>
+                </div>
+
+                <div class="testimonial">
+                    <div class="testimonial__image">
+                        <img src="https://i.imgur.com/ERA9Sia.png" alt="Yuli Corona - Cliente" loading="lazy">
+                    </div>
+                    <p class="testimonial__text">
+                        "Desde el primer día, JuanDa creyó en mí y me impulsó a dar lo mejor de mi misma. Gracias a su
+                        profesionalismo, dedicación y motivación constante, logré cambios físicos notables: gané peso de
+                        manera saludable, aumenté mi fuerza, mejoré mi postura y resistencia. Con frases como 'una más, bebé,
+                        tú puedes', logra sacar lo mejor de mí incluso en mis días más difíciles."
+                    </p>
+                    <p class="testimonial__author">Yuli Corona</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacto -->
+    <section id="contacto" class="section contact">
+        <div class="container">
+            <h2 class="section__title fade-in">¿Listo para empezar tu transformación?</h2>
+            <p class="section__subtitle fade-in">
+                Contáctame y comencemos a trabajar juntos hacia tus objetivos
+            </p>
+
+            <div class="contact__info fade-in">
+                <a href="https://www.instagram.com/juanda.entrenador_7?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="contact__item contact__item--clickeable" target="_blank">
+                    <div class="contact__icon">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                    <div class="contact__label">Instagram</div>
+                    <div class="contact__value">@juanda.entrenador_7</div>
+                </a>
+
+                <a href="https://wa.me/573187618080?text=Hola Juan David, me interesa conocer más sobre tus planes de entrenamiento personalizado" class="contact__item contact__item--clickeable" target="_blank">
+                    <div class="contact__icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <div class="contact__label">WhatsApp</div>
+                    <div class="contact__value">+57 318 761 8080</div>
+                </a>
+
+                <div class="contact__item">
+                    <div class="contact__icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="contact__label">Ubicación</div>
+                    <div class="contact__value">Bucaramanga, Santander</div>
+                </div>
+            </div>
+
+            <div style="margin-top: var(--spacing-lg);">
+                <a href="https://wa.me/573187618080?text=Hola Juan David, me interesa conocer más sobre tus planes de entrenamiento personalizado" class="btn btn--primary">Solicitar información</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- WhatsApp flotante -->
+    <a href="https://wa.me/573187618080?text=Hola Juan David, me interesa conocer más sobre tus planes de entrenamiento personalizado" class="whatsapp-float" target="_blank">
+        <div class="whatsapp-float__btn">
+            <i class="fab fa-whatsapp"></i>
+        </div>
+    </a>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer__content">
+            <div class="footer__logo">Juan David Martínez</div>
+            <p class="footer__description">
+                Entrenador Personal Certificado en Bucaramanga. Transformando vidas a través del ejercicio personalizado
+                y el acompañamiento constante.
+            </p>
+
+            <div class="footer__social">
+                <a href="https://www.instagram.com/juanda.entrenador_7?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="footer__social-link" target="_blank">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" class="footer__social-link">
+                    <i class="fab fa-facebook"></i>
+                </a>
+                <a href="#" class="footer__social-link">
+                    <i class="fab fa-tiktok"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="footer__copyright">
+            <p>&copy; 2024 Juan David Martínez - Entrenador Personal. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Menu hamburguesa
+        const navToggle = document.getElementById('navToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        navToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            const icon = navToggle.querySelector('i');
+            if (navMenu.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Cerrar menú al hacer click en un enlace
+        document.querySelectorAll('.nav__link').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                const icon = navToggle.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            });
+        });
+
+        // Animaciones al scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observar elementos con clase fade-in
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scroll para navegación
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Efecto parallax sutil en el hero
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+
+        // Contador animado
+        function animateCount(element, start, end, duration) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const current = Math.floor(progress * (end - start) + start);
+                element.textContent = current + (element.textContent.includes('+') ? '+' : '');
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        // Activar contador cuando sea visible
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const number = entry.target.querySelector('.hero__stat-number');
+                    const text = number.textContent;
+                    if (text.includes('3+')) {
+                        animateCount(number, 0, 3, 2000);
+                        number.textContent = '3+';
+                    }
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        });
+
+        document.querySelectorAll('.hero__stat').forEach(stat => {
+            statsObserver.observe(stat);
+        });
+    </script>
+</body>
+</html>
