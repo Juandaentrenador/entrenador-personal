@@ -1051,6 +1051,105 @@
                 max-width: 300px;
                 margin: 0 auto;
             }
+            /* Preguntas Frecuentes */
+        .faq {
+            background: var(--color-dark);
+        }
+
+        .faq__container {
+            max-width: 800px;
+            margin: var(--spacing-lg) auto 0;
+        }
+
+        .faq__item {
+            background: var(--color-card);
+            border: 1px solid rgba(0, 255, 127, 0.2);
+            border-radius: var(--border-radius);
+            margin-bottom: var(--spacing-md);
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .faq__item:hover {
+            border-color: var(--color-primary);
+        }
+
+        .faq__question {
+            width: 100%;
+            background: none;
+            border: none;
+            padding: var(--spacing-md);
+            text-align: left;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--color-text);
+            font-size: 1.125rem;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .faq__question:hover {
+            color: var(--color-primary);
+        }
+
+        .faq__question span {
+            flex: 1;
+            padding-right: var(--spacing-sm);
+        }
+
+        .faq__icon {
+            color: var(--color-primary);
+            font-size: 1rem;
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .faq__item.active .faq__icon {
+            transform: rotate(180deg);
+        }
+
+        .faq__answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+            padding: 0 var(--spacing-md);
+        }
+
+        .faq__item.active .faq__answer {
+            max-height: 500px;
+            padding: 0 var(--spacing-md) var(--spacing-md);
+        }
+
+        .faq__answer p {
+            color: var(--color-text-light);
+            line-height: 1.7;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .faq__answer p:last-child {
+            margin-bottom: 0;
+        }
+
+        .faq__answer strong {
+            color: var(--color-primary);
+        }
+
+        @media (max-width: 767px) {
+            .faq__question {
+                font-size: 1rem;
+                padding: var(--spacing-sm);
+            }
+
+            .faq__answer {
+                padding: 0 var(--spacing-sm);
+            }
+
+            .faq__item.active .faq__answer {
+                padding: 0 var(--spacing-sm) var(--spacing-sm);
+            }
+        }
 
             .testimonial__image {
                 width: 60px;
@@ -1386,6 +1485,69 @@
             </div>
         </div>
     </section>
+    <!-- Preguntas Frecuentes -->
+    <section id="faq" class="section faq">
+        <div class="container">
+            <h2 class="section__title fade-in">Preguntas Frecuentes</h2>
+            <p class="section__subtitle fade-in">
+                Resuelve tus dudas antes de comenzar tu transformación
+            </p>
+
+            <div class="faq__container fade-in">
+                <div class="faq__item">
+                    <button class="faq__question">
+                        <span>¿Necesito experiencia previa?</span>
+                        <i class="fas fa-chevron-down faq__icon"></i>
+                    </button>
+                    <div class="faq__answer">
+                        <p>No. El entrenamiento se adapta al nivel y a los objetivos de cada persona.</p>
+                    </div>
+                </div>
+
+                <div class="faq__item">
+                    <button class="faq__question">
+                        <span>¿Cuánto duran las sesiones?</span>
+                        <i class="fas fa-chevron-down faq__icon"></i>
+                    </button>
+                    <div class="faq__answer">
+                        <p>Entre 1 hora y 15 minutos y 1 hora y 40 minutos, según el día y el tipo de entrenamiento.</p>
+                    </div>
+                </div>
+
+                <div class="faq__item">
+                    <button class="faq__question">
+                        <span>¿Incluye plan nutricional?</span>
+                        <i class="fas fa-chevron-down faq__icon"></i>
+                    </button>
+                    <div class="faq__answer">
+                        <p>Sí. Incluye un plan personalizado según los objetivos individuales.</p>
+                    </div>
+                </div>
+
+                <div class="faq__item">
+                    <button class="faq__question">
+                        <span>¿Dónde se realizan los entrenamientos?</span>
+                        <i class="fas fa-chevron-down faq__icon"></i>
+                    </button>
+                    <div class="faq__answer">
+                        <p><strong>Depende del plan:</strong></p>
+                        <p><strong>Presencial:</strong> En Olympian Gym (Cra. 30 #13A-06) o en un gimnasio acordado entre el entrenador y el asesorado.</p>
+                        <p><strong>Online:</strong> De manera virtual.</p>
+                    </div>
+                </div>
+
+                <div class="faq__item">
+                    <button class="faq__question">
+                        <span>¿Qué pasa si falto a una sesión?</span>
+                        <i class="fas fa-chevron-down faq__icon"></i>
+                    </button>
+                    <div class="faq__answer">
+                        <p>La reposición de la sesión se evalúa según el motivo de la inasistencia y el contexto previamente notificado.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Contacto -->
     <section id="contacto" class="section contact">
@@ -1640,6 +1802,26 @@
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
+            });
+        });
+        // FAQ Accordion
+        const faqItems = document.querySelectorAll('.faq__item');
+
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq__question');
+            
+            question.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+                
+                // Cerrar todos los items
+                faqItems.forEach(faqItem => {
+                    faqItem.classList.remove('active');
+                });
+                
+                // Abrir el clickeado si no estaba activo
+                if (!isActive) {
+                    item.classList.add('active');
+                }
             });
         });
     </script>
