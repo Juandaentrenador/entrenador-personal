@@ -441,36 +441,39 @@
         /* Galería de Transformaciones */
         .transformations {
             background: var(--color-background);
-            overflow: hidden;
         }
 
-        .transformations__carousel {
+        .transformations__slider {
             position: relative;
-            max-width: 900px;
+            max-width: 800px;
             margin: var(--spacing-lg) auto 0;
-            overflow: hidden;
             border-radius: var(--border-radius);
         }
 
-        .carousel__track {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-        }
-
-       .carousel__slide {
-                height: 500px;
-            }
-
-       .carousel__slide img {
+        .slider__wrapper {
+            position: relative;
             width: 100%;
-            height: 100%;
-            object-fit: contain;    
-            object-position: center;
+            height: 600px;
+            overflow: hidden;
             border-radius: var(--border-radius);
             border: 2px solid rgba(0, 255, 127, 0.3);
         }
 
-        .carousel__btn {
+        .slider__image {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: center;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .slider__image.active {
+            opacity: 1;
+        }
+
+        .slider__btn {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
@@ -489,27 +492,27 @@
             font-size: 1.2rem;
         }
 
-        .carousel__btn:hover {
+        .slider__btn:hover {
             background: var(--color-primary);
             transform: translateY(-50%) scale(1.1);
         }
 
-        .carousel__btn--prev {
+        .slider__btn--prev {
             left: 20px;
         }
 
-        .carousel__btn--next {
+        .slider__btn--next {
             right: 20px;
         }
 
-        .carousel__dots {
+        .slider__indicators {
             display: flex;
             justify-content: center;
             gap: 10px;
             margin-top: var(--spacing-md);
         }
 
-        .carousel__dot {
+        .slider__dot {
             width: 12px;
             height: 12px;
             border-radius: 50%;
@@ -519,29 +522,29 @@
             transition: var(--transition);
         }
 
-        .carousel__dot.active {
+        .slider__dot.active {
             background: var(--color-primary);
             width: 30px;
             border-radius: 6px;
         }
 
         @media (max-width: 767px) {
-            .carousel__btn {
+            .slider__wrapper {
+                height: 500px;
+            }
+
+            .slider__btn {
                 width: 40px;
                 height: 40px;
                 font-size: 1rem;
             }
 
-            .carousel__btn--prev {
+            .slider__btn--prev {
                 left: 10px;
             }
 
-            .carousel__btn--next {
+            .slider__btn--next {
                 right: 10px;
-            }
-
-            .carousel__slide {
-                aspect-ratio: 3/4;
             }
         }
 
@@ -1108,40 +1111,27 @@
                 Resultados comprobados de personas que confiaron en el proceso
             </p>
 
-            <div class="transformations__carousel">
-                <div class="carousel__track">
-                    <div class="carousel__slide">
-                        <img src="https://i.imgur.com/z6KtzKq.jpeg" alt="Transformación 1">
-                    </div>
-                    <div class="carousel__slide">
-                        <img src="https://i.imgur.com/fQFKXnh.jpeg" alt="Transformación 2">
-                    </div>
-                    <div class="carousel__slide">
-                        <img src="https://i.imgur.com/i3jCWO7.jpeg" alt="Transformación 3">
-                    </div>
-                    <div class="carousel__slide">
-                        <img src="https://i.imgur.com/ITazyPr.jpeg" alt="Transformación 4">
-                    </div>
-                    <div class="carousel__slide">
-                        <img src="https://i.imgur.com/6qoh9E7.jpeg" alt="Transformación 5">
-                    </div>
-                    <div class="carousel__slide">
-                        <img src="https://i.imgur.com/U55088C.jpeg" alt="Transformación 6">
-                    </div>
+            <div class="transformations__slider">
+                <div class="slider__wrapper" id="sliderWrapper">
+                    <img src="https://i.imgur.com/z6KtzKq.jpeg" alt="Transformación 1" class="slider__image active">
+                    <img src="https://i.imgur.com/fQFKXnh.jpeg" alt="Transformación 2" class="slider__image">
+                    <img src="https://i.imgur.com/i3jCWO7.jpeg" alt="Transformación 3" class="slider__image">
+                    <img src="https://i.imgur.com/ITazyPr.jpeg" alt="Transformación 4" class="slider__image">
+                    <img src="https://i.imgur.com/6qoh9E7.jpeg" alt="Transformación 5" class="slider__image">
+                    <img src="https://i.imgur.com/U55088C.jpeg" alt="Transformación 6" class="slider__image">
                 </div>
                 
-                <button class="carousel__btn carousel__btn--prev" id="prevBtn">
+                <button class="slider__btn slider__btn--prev" onclick="changeSlide(-1)">
                     <i class="fas fa-chevron-left"></i>
                 </button>
-                <button class="carousel__btn carousel__btn--next" id="nextBtn">
+                <button class="slider__btn slider__btn--next" onclick="changeSlide(1)">
                     <i class="fas fa-chevron-right"></i>
                 </button>
                 
-                <div class="carousel__dots" id="carouselDots"></div>
+                <div class="slider__indicators" id="indicators"></div>
             </div>
         </div>
     </section>
-
     <!-- Planes de entrenamiento -->
     <section id="planes" class="section">
         <div class="container">
@@ -1465,76 +1455,69 @@
         document.querySelectorAll('.hero__stat').forEach(stat => {
             statsObserver.observe(stat);
         });
-        // Carrusel de transformaciones
-        const track = document.querySelector('.carousel__track');
-        const slides = Array.from(track.children);
-        const nextBtn = document.getElementById('nextBtn');
-        const prevBtn = document.getElementById('prevBtn');
-        const dotsContainer = document.getElementById('carouselDots');
+        // Slider de transformaciones (NUEVO)
+        let currentSlide = 0;
+        const images = document.querySelectorAll('.slider__image');
+        const indicatorsContainer = document.getElementById('indicators');
+        let autoSlideInterval;
 
-        let currentIndex = 0;
-        let autoplayInterval;
-
-        // Crear dots
-        slides.forEach((_, index) => {
+        // Crear indicadores
+        images.forEach((_, index) => {
             const dot = document.createElement('button');
-            dot.classList.add('carousel__dot');
+            dot.classList.add('slider__dot');
             if (index === 0) dot.classList.add('active');
-            dot.addEventListener('click', () => goToSlide(index));
-            dotsContainer.appendChild(dot);
+            dot.onclick = () => goToSlide(index);
+            indicatorsContainer.appendChild(dot);
         });
 
-        const dots = Array.from(dotsContainer.children);
+        const dots = document.querySelectorAll('.slider__dot');
 
-        function updateCarousel() {
-            track.style.transform = `translateX(-${currentIndex * 100}%)`;
+        function showSlide(n) {
+            images.forEach(img => img.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
             
-            dots.forEach((dot, index) => {
-                dot.classList.toggle('active', index === currentIndex);
-            });
+            if (n >= images.length) currentSlide = 0;
+            if (n < 0) currentSlide = images.length - 1;
+            
+            images[currentSlide].classList.add('active');
+            dots[currentSlide].classList.add('active');
         }
 
-        function goToSlide(index) {
-            currentIndex = index;
-            updateCarousel();
-            resetAutoplay();
+        function changeSlide(direction) {
+            currentSlide += direction;
+            showSlide(currentSlide);
+            resetAutoSlide();
         }
 
-        function nextSlide() {
-            currentIndex = (currentIndex + 1) % slides.length;
-            updateCarousel();
+        function goToSlide(n) {
+            currentSlide = n;
+            showSlide(currentSlide);
+            resetAutoSlide();
         }
 
-        function prevSlide() {
-            currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-            updateCarousel();
+        function autoSlide() {
+            currentSlide++;
+            showSlide(currentSlide);
         }
 
-        function startAutoplay() {
-            autoplayInterval = setInterval(nextSlide, 4000); // Cambia cada 4 segundos
+        function startAutoSlide() {
+            autoSlideInterval = setInterval(autoSlide, 4000);
         }
 
-        function resetAutoplay() {
-            clearInterval(autoplayInterval);
-            startAutoplay();
+        function resetAutoSlide() {
+            clearInterval(autoSlideInterval);
+            startAutoSlide();
         }
 
-        nextBtn.addEventListener('click', () => {
-            nextSlide();
-            resetAutoplay();
+        // Pausar cuando el mouse está sobre el slider
+        document.querySelector('.slider__wrapper').addEventListener('mouseenter', () => {
+            clearInterval(autoSlideInterval);
         });
 
-        prevBtn.addEventListener('click', () => {
-            prevSlide();
-            resetAutoplay();
-        });
-
-        // Pausar autoplay al hacer hover
-        track.addEventListener('mouseenter', () => clearInterval(autoplayInterval));
-        track.addEventListener('mouseleave', startAutoplay);
+        document.querySelector('.slider__wrapper').addEventListener('mouseleave', startAutoSlide);
 
         // Iniciar autoplay
-        startAutoplay();
+        startAutoSlide();
     </script>
 </body>
 </html>
