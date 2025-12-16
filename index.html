@@ -5,12 +5,70 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Juan David Martínez - Entrenador Personal Bucaramanga</title>
     <meta name="description" content="Entrenador Personal Certificado en Bucaramanga. Más de 3 años transformando vidas. Planes personalizados, semipersonalizados y online desde $260.000.">
-
+    
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-
     <!-- Font Awesome para iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- SEO COMPLETO -->    <--- AQUÍ EMPIEZA
+    <meta name="keywords" content="entrenador personal Bucaramanga, gym Bucaramanga, fitness Bucaramanga, entrenamiento personalizado, plan nutricional, transformación física, gimnasio Bucaramanga, coach fitness, Juan David Martínez, entrenador UCC">
+    <meta name="author" content="Juan David Martínez">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://juandaentrenador.github.io/entrenador-personal/">
+    
+    <!-- GEO TARGETING -->
+    <meta name="geo.region" content="CO-SAN">
+    <meta name="geo.placename" content="Bucaramanga">
+    <meta name="geo.position" content="7.119349;-73.122742">
+    
+    <!-- OPEN GRAPH (Redes sociales) -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Juan David Martínez - Entrenador Personal Bucaramanga">
+    <meta property="og:description" content="Transforma tu cuerpo con entrenamiento personalizado. Planes desde $260.000/mes. Más de 3 años de experiencia y resultados comprobados.">
+    <meta property="og:image" content="https://i.imgur.com/b2T0rgC.png">
+    <meta property="og:url" content="https://juandaentrenador.github.io/entrenador-personal/">
+    <meta property="og:site_name" content="Juan David Martínez - Entrenador Personal">
+    <meta property="og:locale" content="es_CO">
+    
+    <!-- TWITTER CARDS -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Juan David Martínez - Entrenador Personal">
+    <meta name="twitter:description" content="Transforma tu cuerpo con entrenamiento personalizado en Bucaramanga">
+    <meta name="twitter:image" content="https://i.imgur.com/b2T0rgC.png">
+    
+    <!-- WHATSAPP -->
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    
+    <!-- STRUCTURED DATA (Google) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "Juan David Martínez - Entrenador Personal",
+      "image": "https://i.imgur.com/b2T0rgC.png",
+      "description": "Entrenador personal certificado en Bucaramanga con más de 3 años de experiencia",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Bucaramanga",
+        "addressRegion": "Santander",
+        "addressCountry": "CO"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 7.119349,
+        "longitude": -73.122742
+      },
+      "url": "https://juandaentrenador.github.io/entrenador-personal/",
+      "telephone": "+573187618080",
+      "priceRange": "$260.000 - $400.000",
+      "openingHours": "Mo-Sa 06:00-20:00",
+      "sameAs": [
+        "https://www.instagram.com/juanda.entrenador_7"
+      ]
+    }
+    </script>
 
     <style>
         /* Variables CSS */
@@ -1012,6 +1070,47 @@
             opacity: 1;
             transform: translateY(0);
         }
+        /* Botón Volver Arriba */
+        .scroll-top-btn {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            z-index: 998;
+            background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
+            color: var(--color-dark);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 15px rgba(0, 255, 127, 0.3);
+        }
+
+        .scroll-top-btn.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 255, 127, 0.5);
+        }
+
+        @media (max-width: 767px) {
+            .scroll-top-btn {
+                bottom: 80px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+            }
+        }
 
     </style>
 </head>
@@ -1352,6 +1451,10 @@
             <p>&copy; 2024 Juan David Martínez - Entrenador Personal. Todos los derechos reservados.</p>
         </div>
     </footer>
+     <!-- Botón Volver Arriba -->    
+    <button id="scrollTopBtn" class="scroll-top-btn" title="Volver arriba">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 
     <script>
         // Menu hamburguesa
@@ -1518,6 +1621,24 @@
 
         // Iniciar autoplay
         startAutoSlide();
+
+        // Botón Volver Arriba
+        const scrollTopBtn = document.getElementById('scrollTopBtn');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollTopBtn.classList.add('show');
+            } else {
+                scrollTopBtn.classList.remove('show');
+            }
+        });
+
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
     </script>
 </body>
 </html>
