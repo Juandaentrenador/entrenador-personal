@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -199,6 +200,90 @@
 
         .nav__link:hover::after {
             width: 100%;
+        }
+        /* Dropdown Menu */
+        .nav__dropdown {
+            position: relative;
+        }
+
+        .nav__dropdown-toggle {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav__dropdown-toggle i {
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+
+        .nav__dropdown:hover .nav__dropdown-toggle i {
+            transform: rotate(180deg);
+        }
+
+        .nav__dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: rgba(10, 10, 15, 0.98);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 255, 127, 0.2);
+            border-radius: var(--border-radius);
+            padding: var(--spacing-xs) 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: var(--transition);
+            min-width: 180px;
+            z-index: 1001;
+        }
+
+        .nav__dropdown:hover .nav__dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .nav__dropdown-menu li {
+            list-style: none;
+        }
+
+        .nav__dropdown-link {
+            display: block;
+            color: var(--color-text);
+            text-decoration: none;
+            padding: var(--spacing-xs) var(--spacing-sm);
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .nav__dropdown-link:hover {
+            color: var(--color-primary);
+            background: rgba(0, 255, 127, 0.1);
+        }
+
+        @media (max-width: 767px) {
+            .nav__dropdown-menu {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                background: transparent;
+                border: none;
+                padding: 0;
+                margin-left: var(--spacing-md);
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+            }
+
+            .nav__dropdown.mobile-open .nav__dropdown-menu {
+                max-height: 200px;
+            }
+
+            .nav__dropdown-toggle {
+                justify-content: flex-start;
+            }
         }
 
         /* Hero Section */
@@ -1051,7 +1136,7 @@
                 max-width: 300px;
                 margin: 0 auto;
             }
-            /* Preguntas Frecuentes */
+            /* FAQ Simplificado */
         .faq {
             background: var(--color-dark);
         }
@@ -1061,25 +1146,16 @@
             margin: var(--spacing-lg) auto 0;
         }
 
-        .faq__item {
+        .faq-item {
             background: var(--color-card);
             border: 1px solid rgba(0, 255, 127, 0.2);
             border-radius: var(--border-radius);
             margin-bottom: var(--spacing-md);
             overflow: hidden;
-            transition: var(--transition);
         }
 
-        .faq__item:hover {
-            border-color: var(--color-primary);
-        }
-
-        .faq__question {
-            width: 100%;
-            background: none;
-            border: none;
+        .faq-question {
             padding: var(--spacing-md);
-            text-align: left;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
@@ -1087,68 +1163,42 @@
             color: var(--color-text);
             font-size: 1.125rem;
             font-weight: 600;
-            transition: var(--transition);
+            transition: color 0.3s ease;
         }
 
-        .faq__question:hover {
+        .faq-question:hover {
             color: var(--color-primary);
         }
 
-        .faq__question span {
-            flex: 1;
-            padding-right: var(--spacing-sm);
-        }
-
-        .faq__icon {
+        .faq-question i {
             color: var(--color-primary);
-            font-size: 1rem;
             transition: transform 0.3s ease;
-            flex-shrink: 0;
         }
 
-        .faq__item.active .faq__icon {
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+            background: rgba(0, 255, 127, 0.02);
+        }
+
+        .faq-answer.show {
+            max-height: 200px;
+            padding: var(--spacing-md);
+        }
+
+        .faq-item.active .faq-question i {
             transform: rotate(180deg);
         }
 
-        .faq__answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease, padding 0.4s ease;
-            padding: 0 var(--spacing-md);
-        }
-
-        .faq__item.active .faq__answer {
-            max-height: 500px;
-            padding: 0 var(--spacing-md) var(--spacing-md);
-        }
-
-        .faq__answer p {
+        .faq-answer p {
             color: var(--color-text-light);
             line-height: 1.7;
             margin-bottom: var(--spacing-xs);
         }
 
-        .faq__answer p:last-child {
-            margin-bottom: 0;
-        }
-
-        .faq__answer strong {
+        .faq-answer strong {
             color: var(--color-primary);
-        }
-
-        @media (max-width: 767px) {
-            .faq__question {
-                font-size: 1rem;
-                padding: var(--spacing-sm);
-            }
-
-            .faq__answer {
-                padding: 0 var(--spacing-sm);
-            }
-
-            .faq__item.active .faq__answer {
-                padding: 0 var(--spacing-sm) var(--spacing-sm);
-            }
         }
 
             .testimonial__image {
@@ -1225,12 +1275,21 @@
                 <i class="fas fa-bars"></i>
             </button>
             <ul class="nav__menu" id="navMenu">
-                <li><a href="#inicio" class="nav__link">Inicio</a></li>
-                <li><a href="#sobre-mi" class="nav__link">Sobre Mí</a></li>
-                <li><a href="#planes" class="nav__link">Planes</a></li>
-                <li><a href="#testimonios" class="nav__link">Testimonios</a></li>
-                <li><a href="#contacto" class="nav__link">Contacto</a></li>
-            </ul>
+    <li><a href="#inicio" class="nav__link">Inicio</a></li>
+    <li><a href="#sobre-mi" class="nav__link">Sobre Mí</a></li>
+    <li class="nav__dropdown">
+        <a href="#" class="nav__link nav__dropdown-toggle">
+            Servicios <i class="fas fa-chevron-down"></i>
+        </a>
+        <ul class="nav__dropdown-menu">
+            <li><a href="#transformaciones" class="nav__dropdown-link">Transformaciones</a></li>
+            <li><a href="#planes" class="nav__dropdown-link">Planes</a></li>
+        </ul>
+    </li>
+    <li><a href="#testimonios" class="nav__link">Testimonios</a></li>
+    <li><a href="#faq" class="nav__link">FAQ</a></li>
+    <li><a href="#contacto" class="nav__link">Contacto</a></li>
+</ul>
         </nav>
     </header>
 
@@ -1305,7 +1364,7 @@
         </div>
     </section>
     <!-- Galería de Transformaciones -->
-    <section class="section transformations">
+<section id="transformaciones" class="section transformations">
         <div class="container">
             <h2 class="section__title fade-in">Transformaciones Reales</h2>
             <p class="section__subtitle fade-in">
@@ -1494,55 +1553,65 @@
             </p>
 
             <div class="faq__container fade-in">
-                <div class="faq__item">
-                    <button class="faq__question">
+                <div style="background: var(--color-card); border: 1px solid rgba(0, 255, 127, 0.2); border-radius: var(--border-radius); margin-bottom: var(--spacing-md); overflow: hidden;">
+                    <div onclick="toggleFAQ(this)" style="padding: var(--spacing-md); cursor: pointer; display: flex; justify-content: space-between; align-items: center; color: var(--color-text); font-size: 1.125rem; font-weight: 600;">
                         <span>¿Necesito experiencia previa?</span>
-                        <i class="fas fa-chevron-down faq__icon"></i>
-                    </button>
-                    <div class="faq__answer">
-                        <p>No. El entrenamiento se adapta al nivel y a los objetivos de cada persona.</p>
+                        <i class="fas fa-chevron-down" style="color: var(--color-primary); transition: transform 0.3s ease;"></i>
+                    </div>
+                    <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: all 0.4s ease; background: rgba(0, 255, 127, 0.02);">
+                        <div style="padding: var(--spacing-md); color: var(--color-text-light); line-height: 1.7;">
+                            <p>No. El entrenamiento se adapta al nivel y a los objetivos de cada persona.</p>
+                        </div>
                     </div>
                 </div>
 
-                <div class="faq__item">
-                    <button class="faq__question">
+                <div style="background: var(--color-card); border: 1px solid rgba(0, 255, 127, 0.2); border-radius: var(--border-radius); margin-bottom: var(--spacing-md); overflow: hidden;">
+                    <div onclick="toggleFAQ(this)" style="padding: var(--spacing-md); cursor: pointer; display: flex; justify-content: space-between; align-items: center; color: var(--color-text); font-size: 1.125rem; font-weight: 600;">
                         <span>¿Cuánto duran las sesiones?</span>
-                        <i class="fas fa-chevron-down faq__icon"></i>
-                    </button>
-                    <div class="faq__answer">
-                        <p>Entre 1 hora y 15 minutos y 1 hora y 40 minutos, según el día y el tipo de entrenamiento.</p>
+                        <i class="fas fa-chevron-down" style="color: var(--color-primary); transition: transform 0.3s ease;"></i>
+                    </div>
+                    <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: all 0.4s ease; background: rgba(0, 255, 127, 0.02);">
+                        <div style="padding: var(--spacing-md); color: var(--color-text-light); line-height: 1.7;">
+                            <p>Entre 1 hora y 15 minutos y 1 hora y 40 minutos, según el día y el tipo de entrenamiento.</p>
+                        </div>
                     </div>
                 </div>
 
-                <div class="faq__item">
-                    <button class="faq__question">
+                <div style="background: var(--color-card); border: 1px solid rgba(0, 255, 127, 0.2); border-radius: var(--border-radius); margin-bottom: var(--spacing-md); overflow: hidden;">
+                    <div onclick="toggleFAQ(this)" style="padding: var(--spacing-md); cursor: pointer; display: flex; justify-content: space-between; align-items: center; color: var(--color-text); font-size: 1.125rem; font-weight: 600;">
                         <span>¿Incluye plan nutricional?</span>
-                        <i class="fas fa-chevron-down faq__icon"></i>
-                    </button>
-                    <div class="faq__answer">
-                        <p>Sí. Incluye un plan personalizado según los objetivos individuales.</p>
+                        <i class="fas fa-chevron-down" style="color: var(--color-primary); transition: transform 0.3s ease;"></i>
+                    </div>
+                    <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: all 0.4s ease; background: rgba(0, 255, 127, 0.02);">
+                        <div style="padding: var(--spacing-md); color: var(--color-text-light); line-height: 1.7;">
+                            <p>Sí. Incluye un plan personalizado según los objetivos individuales.</p>
+                        </div>
                     </div>
                 </div>
 
-                <div class="faq__item">
-                    <button class="faq__question">
+                <div style="background: var(--color-card); border: 1px solid rgba(0, 255, 127, 0.2); border-radius: var(--border-radius); margin-bottom: var(--spacing-md); overflow: hidden;">
+                    <div onclick="toggleFAQ(this)" style="padding: var(--spacing-md); cursor: pointer; display: flex; justify-content: space-between; align-items: center; color: var(--color-text); font-size: 1.125rem; font-weight: 600;">
                         <span>¿Dónde se realizan los entrenamientos?</span>
-                        <i class="fas fa-chevron-down faq__icon"></i>
-                    </button>
-                    <div class="faq__answer">
-                        <p><strong>Depende del plan:</strong></p>
-                        <p><strong>Presencial:</strong> En Olympian Gym (Cra. 30 #13A-06) o en un gimnasio acordado entre el entrenador y el asesorado.</p>
-                        <p><strong>Online:</strong> De manera virtual.</p>
+                        <i class="fas fa-chevron-down" style="color: var(--color-primary); transition: transform 0.3s ease;"></i>
+                    </div>
+                    <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: all 0.4s ease; background: rgba(0, 255, 127, 0.02);">
+                        <div style="padding: var(--spacing-md); color: var(--color-text-light); line-height: 1.7;">
+                            <p><strong style="color: var(--color-primary);">Depende del plan:</strong></p>
+                            <p><strong style="color: var(--color-primary);">Presencial:</strong> En Olympian Gym (Cra. 30 #13A-06) o en un gimnasio acordado entre el entrenador y el asesorado.</p>
+                            <p><strong style="color: var(--color-primary);">Online:</strong> De manera virtual.</p>
+                        </div>
                     </div>
                 </div>
 
-                <div class="faq__item">
-                    <button class="faq__question">
+                <div style="background: var(--color-card); border: 1px solid rgba(0, 255, 127, 0.2); border-radius: var(--border-radius); margin-bottom: var(--spacing-md); overflow: hidden;">
+                    <div onclick="toggleFAQ(this)" style="padding: var(--spacing-md); cursor: pointer; display: flex; justify-content: space-between; align-items: center; color: var(--color-text); font-size: 1.125rem; font-weight: 600;">
                         <span>¿Qué pasa si falto a una sesión?</span>
-                        <i class="fas fa-chevron-down faq__icon"></i>
-                    </button>
-                    <div class="faq__answer">
-                        <p>La reposición de la sesión se evalúa según el motivo de la inasistencia y el contexto previamente notificado.</p>
+                        <i class="fas fa-chevron-down" style="color: var(--color-primary); transition: transform 0.3s ease;"></i>
+                    </div>
+                    <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: all 0.4s ease; background: rgba(0, 255, 127, 0.02);">
+                        <div style="padding: var(--spacing-md); color: var(--color-text-light); line-height: 1.7;">
+                            <p>La reposición de la sesión se evalúa según el motivo de la inasistencia y el contexto previamente notificado.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1786,6 +1855,28 @@
 
         // Iniciar autoplay
         startAutoSlide();
+
+        // FAQ Definitivo
+        function toggleFAQ(questionElement) {
+            const faqItem = questionElement.parentNode;
+            const answer = faqItem.querySelector('.faq-answer');
+            const icon = questionElement.querySelector('i');
+            const isOpen = answer.style.maxHeight && answer.style.maxHeight !== '0px';
+            
+            // Cerrar todos
+            document.querySelectorAll('.faq-answer').forEach(ans => {
+                ans.style.maxHeight = '0';
+            });
+            document.querySelectorAll('.fas.fa-chevron-down').forEach(ic => {
+                ic.style.transform = 'rotate(0deg)';
+            });
+            
+            // Abrir el actual si no estaba abierto
+            if (!isOpen) {
+                answer.style.maxHeight = answer.scrollHeight + 'px';
+                icon.style.transform = 'rotate(180deg)';
+            }
+        }
 
         // Botón Volver Arriba
         const scrollTopBtn = document.getElementById('scrollTopBtn');
